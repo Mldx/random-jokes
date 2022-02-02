@@ -1,6 +1,7 @@
 const jTitle = document.querySelector('.quotes__title')
 const jText = document.querySelector('.quotes__text')
 const jButton = document.querySelector('.quotes__button')
+const jLang = document.querySelectorAll('.lang__input')
 
 const rand = (max) => {
     return Math.trunc(Math.random() * (max - 1) + 1)
@@ -11,21 +12,34 @@ const randomQuote = (data) => {
     jTitle.textContent = data[x]['author']
     jText.textContent = data[x]['text']
 }
+const isRu = () => {
+    let temp;
+    jLang.forEach(el => {
+        if (el.id === 'ru' && el.checked){
+            temp = true;
+        }
+    })
+    return Boolean(temp);
+}
 
 async function getData() {
-    if (jButton.textContent.includes('ru')){
-    const quotes = 'others/quotes_ru.json';
-    const res = await fetch(quotes);
-    const data = await res.json();
-    randomQuote(data)
-    }else if (jButton.textContent.includes('eng')){
-    const quotes = 'others/quotes_eng.json';
-    const res = await fetch(quotes);
-    const data = await res.json();
-    randomQuote(data)
+
+    if (isRu()) {
+        const quotes = 'others/quotes_ru.json';
+        const res = await fetch(quotes);
+        const data = await res.json();
+        randomQuote(data)
+    } else if (!isRu()) {
+        const quotes = 'others/quotes_eng.json';
+        const res = await fetch(quotes);
+        const data = await res.json();
+        randomQuote(data)
     }
 }
+
 getData();
 
-jButton.addEventListener('click', getData)
+jButton.addEventListener('click', () => {
+    getData()
+})
 

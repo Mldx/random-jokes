@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
-
+:root{
+    --color-main: #ffb1bc;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,7 +20,7 @@ a, a:active {
 }
 
 a:hover {
-    color: #CC6666;
+    color: var(--color-main);
 }
 
 
@@ -63,16 +65,43 @@ a:hover {
     display: flex;
     flex-direction: column;
     min-height: 500px;
-    max-width: 600px;
+    width: 600px;
     font-family: Roboto, sans-serif;
 }
+
+
+
+.quotes__lang{
+    font-size: 2.5rem;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.lang__input{
+    display: none;
+}
+.lang__text{
+    cursor: pointer;
+    transition: color .2s;
+
+}
+.lang__input:checked + .lang__text{
+    color: var(--color-main);
+}
+
+
+
+
 .quotes__button {
     width: 200px;
     height: 50px;
     font-size: 2rem;
     border-radius: 10px;
     border: none;
-    background: #ffb1bc;
+    background: var(--color-main);
     color: white;
     box-shadow: 1px 1px 3px rgba(255, 0, 8, 0.64);
     user-select: none;
@@ -88,11 +117,15 @@ a:hover {
 .quotes__title{
     margin-top: 40px;
     font-weight: 600;
+    display: flex;
+    justify-content: start;
 }
 .quotes__text{
     margin-top: 10px;
     font-size: 2.5rem;
     line-height: 125%;
+    display: flex;
+    justify-content: start;
 }
 
 
@@ -118,5 +151,5 @@ a:hover {
 }
 
 .logoRS__link:hover {
-    filter: brightness(0) saturate(100%) invert(42%) sepia(90%) saturate(356%) hue-rotate(315deg) brightness(102%) contrast(74%);
+    filter: invert(72%) sepia(4%) saturate(2774%) hue-rotate(304deg) brightness(104%) contrast(107%);
 }
